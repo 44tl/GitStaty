@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GitStaty - GitHub Profile Stats</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="bgCanvas" aria-hidden="true"></canvas>
+    <div class="container">
+        <header>
+            <h1>GitStaty</h1>
+            <p class="tagline">Get awesome GitHub profile stats in seconds</p>
+        </header>
+
+        <div class="search-section">
+            <div class="search-box">
+                <input 
+                    type="text" 
+                    id="usernameInput" 
+                    placeholder="Enter GitHub username..." 
+                    autocomplete="off"
+                    autofocus
+                >
+                <button id="searchBtn" type="button">
+                    <svg viewBox="0 0 24 24" width="24" height="24" stroke="currentColor" stroke-width="2" fill="none">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </button>
+            </div>
+            <p class="error" id="errorMsg" hidden></p>
+        </div>
+
+        <div id="loading" class="loading" hidden>
+            <div class="spinner"></div>
+            <p>Fetching stats...</p>
+        </div>
+
+        <main id="results" class="results" hidden>
+            <div class="profile-card">
+                <div class="profile-header">
+                    <img id="avatar" src="" alt="Avatar" class="avatar">
+                    <div class="profile-info" id="profileInfo">
+                        <h2 id="name" class="name"></h2>
+                        <a id="login" href="" target="_blank" rel="noopener" class="username"></a>
+                        <p id="bio" class="bio"></p>
+                        <div class="meta">
+                            <span id="location" class="meta-item"></span>
+                            <span id="company" class="meta-item"></span>
+                            <span id="joined" class="meta-item"></span>
+                        </div>
+                        <div class="socials">
+                            <a id="blog" href="" target="_blank" rel="noopener" class="social-link" hidden></a>
+                            <a id="twitter" href="" target="_blank" rel="noopener" class="social-link" hidden></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-value" id="repos">0</div>
+                    <div class="stat-label">Repositories</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="followers">0</div>
+                    <div class="stat-label">Followers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="following">0</div>
+                    <div class="stat-label">Following</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="stars">0</div>
+                    <div class="stat-label">Total Stars</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="forks">0</div>
+                    <div class="stat-label">Total Forks</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="languages">0</div>
+                    <div class="stat-label">Languages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="accountAge">0</div>
+                    <div class="stat-label">Account Age (days)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="avgStars">0</div>
+                    <div class="stat-label">Avg Stars per Repo</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value" id="totalSize">0</div>
+                    <div class="stat-label">Total Size (MB)</div>
+                </div>
+            </div>
+
+            <div class="fun-facts" id="funFacts" hidden>
+                <h3>Fun Facts</h3>
+                <div class="facts-grid" id="factsGrid"></div>
+            </div>
+
+            <div class="languages-section" id="langSection" hidden>
+                <h3>Top Languages</h3>
+                <div id="langBars" class="lang-bars"></div>
+            </div>
+
+            <div class="repos-section" id="reposSection" hidden>
+                <h3>Top Repositories</h3>
+                <div id="repoList" class="repo-list"></div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Built with the GitHub API. No data is stored.</p>
+        </footer>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
